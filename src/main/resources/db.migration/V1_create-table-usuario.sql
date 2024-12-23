@@ -1,5 +1,8 @@
+
 CREATE TABLE usuario (
-    id TEXT PRIMARY KEY UNIQUE NOT NULL,
-    name TEXT NOT NULL,
-   cpf text
+    cpf TEXT PRIMARY KEY UNIQUE NOT NULL,
+    name TEXT NOT NULL,   
+   nascimento DATE,
+     EMAIL TEXT NOT NULL,
+	 SENHA    TEXT NOT NULL
 );
