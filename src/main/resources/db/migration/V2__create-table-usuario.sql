@@ -5,4 +5,5 @@ CREATE TABLE usuario (
    nascimento DATE,
      EMAIL TEXT NOT NULL,
 	 SENHA    TEXT NOT NULL
+
 );

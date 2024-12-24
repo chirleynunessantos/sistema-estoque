@@ -1,6 +1,6 @@
 CREATE TABLE endereco (
-    id cep PRIMARY KEY UNIQUE NOT NULL,
-    pais TEXT NOT NULL,
+     cep TEXT PRIMARY KEY UNIQUE NOT NULL,
+  
     pais TEXT NOT NULL,
     estado  TEXT NOT NULL, 
     cidade  TEXT  NOT NULL,
