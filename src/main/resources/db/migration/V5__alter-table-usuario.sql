@@ -1,0 +1,1 @@
+ALTER TABLE usuario add column role TEXT;

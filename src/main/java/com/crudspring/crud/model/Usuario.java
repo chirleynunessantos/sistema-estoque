@@ -2,6 +2,12 @@ package com.crudspring.crud.model;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,54 +26,44 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+public class Usuario implements UserDetails {
 	
-	String nome;
+	//String name;
+	
+//	private String cpf;
+	//private LocalDate nascimento;
 	@Id
-	private String cpf;
-	private LocalDate nascimento;
 	private String email;
 	private String senha;
-	public String getNome() {
-		return nome;
-	}
+	private UsuarioRoles role;
 	
-	
-	public LocalDate getNascimento() {
-		return nascimento;
-	}
 
-
-	public void setNascimento(LocalDate nascimento) {
-		this.nascimento = nascimento;
-	}
-
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
+	public Usuario(String email, String senha, UsuarioRoles role) {
+		super();
 		this.email = email;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
 		this.senha = senha;
+		this.role = role;
 	}
-	
-	
-	
-	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		if(this.role== UsuarioRoles.ADMIN) {
+			return List.of(
+					new SimpleGrantedAuthority("ROLE_ADMIN"),
+					new SimpleGrantedAuthority("ROLE_USER")
+					);
+		}else {
+			return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+		}
+	}
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.senha;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.email;
+	}
 	
 }

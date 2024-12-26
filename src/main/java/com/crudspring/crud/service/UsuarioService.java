@@ -16,6 +16,7 @@ public class UsuarioService {
 
 	public void salvarUsuaro(Usuario usuario) {
 		repository.save(usuario);
+		
 	}
 	
 	public void alterarUsuaro(Usuario usuario) {
